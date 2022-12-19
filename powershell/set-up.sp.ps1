@@ -3,10 +3,10 @@ param (
      [string]$groupName,
      
     [Parameter()]
-     [string]$currentUserName,
+     [string]$sqlAdminName,
      
     [Parameter()]
-     [string]$currentUserId,
+     [string]$sqlAdminPrincipalId,
 
     [Parameter()]
      [string]$suffix
@@ -15,7 +15,7 @@ param (
 Write-Host "Creating SQL Server DemoSqlServer$suffix"
 
 $sqlServer = az sql server create --enable-ad-only-auth --external-admin-principal-type User `
-                                  --external-admin-name $currentUserName --external-admin-sid $currentUserId -g $groupName `
+                                  --external-admin-name $sqlAdminName --external-admin-sid $sqlAdminPrincipalId -g $groupName `
                                   -n "DemoSqlServer$suffix" --assign-identity --identity-type SystemAssigned | ConvertFrom-Json
 
 Write-Host "Creating SQL Server Db DemoDb"

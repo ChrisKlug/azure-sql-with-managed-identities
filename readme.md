@@ -21,7 +21,7 @@ For this section, you will use your own account to do everything. And as long as
 
 > $random = ([char[]]([char]'a'..[char]'z') + 0..9 | sort {get-random})[0..6] -join ''
 
-> ./powershell/set-up.sp.ps1 -groupName $group.Name -currentUserName $currentUser.DisplayName -currentUserId $currentUser.Id -suffix $random
+> ./powershell/set-up.sp.ps1 -groupName $group.Name -sqlAdminName $currentUser.DisplayName -sqlAdminPrincipalId $currentUser.Id -suffix $random
 ```
 
 And to remove it all, just run
@@ -53,7 +53,7 @@ The reason for this, is that when you run a SQL command using a "real" user acco
 
 > $random = ([char[]]([char]'a'..[char]'z') + 0..9 | sort {get-random})[0..6] -join ''
 
-> ./powershell/set-up.sp.ps1 -groupName $group.Name -currentUserName $principal.DisplayName -currentUserId $principal.AppId -suffix $random
+> ./powershell/set-up.sp.ps1 -groupName $group.Name -sqlAdminName $principal.DisplayName -sqlAdminPrincipalId $principal.AppId -suffix $random
 ```
 
 Add to remove the created resources, you need to run
